@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./assets/components/Navbar";  
 import Home from "./assets/pages/Home";
 import Rooms from "./assets/pages/Rooms";
@@ -18,7 +18,7 @@ const token = localStorage.getItem("token");
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter>
      <TopBar />
       <Navbar />
 
@@ -39,7 +39,7 @@ function App() {
         
         
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 export default App;
