@@ -3,6 +3,8 @@ import { useState } from "react";
 import "../style/booking.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
+import { API_URL, hasApi, RECAPTCHA_SITE_KEY, formatPrice } from "../services/api";
+import { bookRoom } from "../utils/bookingStore";
 
 export default function Booking() {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -101,8 +103,30 @@ export default function Booking() {
       return;
     }
 
-    if (!captchaValue) {
+    if (RECAPTCHA_SITE_KEY && !captchaValue) {
       alert("Please complete the CAPTCHA");
+      return;
+    }
+
+    // No backend configured → confirm the booking locally so the site
+    // stays usable as a static demo.
+    if (!hasApi) {
+      bookRoom({
+        demo: true,
+        roomId: selectedRoom.id,
+        roomName: selectedRoom.name,
+        price: selectedRoom.price,
+        customerName: form.name,
+        phone: form.phone,
+        email: form.email,
+        checkIn: form.checkIn,
+        checkOut: form.checkOut,
+        checkInTime: form.checkInTime,
+        checkOutTime: form.checkOutTime,
+        identityType: form.identityType,
+        identityNumber: form.identityNumber,
+      });
+      setShowSuccess(true);
       return;
     }
 
@@ -129,7 +153,7 @@ export default function Booking() {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/bookings",
+        `${API_URL}/api/bookings`,
         formData
       );
 
@@ -145,10 +169,7 @@ export default function Booking() {
 
     } catch (error) {
       console.error(error);
-
-      if (error.response && error.response.status === 500) {
-        alert("Booking failed. Please try again.");
-      }
+      alert("Booking failed. Please try again.");
     }
   };
 
@@ -157,7 +178,7 @@ export default function Booking() {
       <div className="booking-hero">
         <div className="hero-content">
           <h1>Book {selectedRoom.name}</h1>
-          <p>{selectedRoom.price}</p>
+          <p>{formatPrice(selectedRoom.price)}</p>
         </div>
       </div>
 
@@ -167,7 +188,7 @@ export default function Booking() {
             <img src={selectedRoom.img} alt={selectedRoom.name} />
             <div>
               <h3>{selectedRoom.name}</h3>
-              <p>{selectedRoom.price}</p>
+              <p>{formatPrice(selectedRoom.price)}</p>
             </div>
           </div>
 
@@ -323,13 +344,15 @@ export default function Booking() {
               />
             </div>
 
-            {/* CAPTCHA */}
-            <div className="form-group">
-              <ReCAPTCHA
-                sitekey="6LcLK3gsAAAAABV8C6VibqxJxMtQuepMVan27W0j"
-                onChange={(value) => setCaptchaValue(value)}
-              />
-            </div>
+            {/* CAPTCHA — only rendered when a site key is configured for this domain */}
+            {RECAPTCHA_SITE_KEY && (
+              <div className="form-group">
+                <ReCAPTCHA
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={(value) => setCaptchaValue(value)}
+                />
+              </div>
+            )}
 
             <button type="submit" className="confirm-btn">
               Confirm Booking

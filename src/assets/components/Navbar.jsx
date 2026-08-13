@@ -40,7 +40,7 @@ export default function Navbar() {
           Rooms
         </NavLink>
 
-        <NavLink to="/gallery" className="nav-link">
+        <NavLink to="/gallery" className="nav-link" onClick={() => setMenuOpen(false)}>
           Gallery
         </NavLink>
 

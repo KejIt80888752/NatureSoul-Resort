@@ -1,4 +1,5 @@
 import { FaInstagram, FaWhatsapp, FaFacebookF, FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import logo from "../LOGO.png";
 
 export default function Footer() {
@@ -20,10 +21,10 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Quick Links</h4>
           <ul>
-            <li>About</li>
-            <li>Contact Us</li>
-            <li>Rooms</li>
-            <li>Testimonials</li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/contact">Contact Us</Link></li>
+            <li><Link to="/rooms">Rooms</Link></li>
+            <li><Link to="/gallery">Gallery</Link></li>
           </ul>
         </div>
 
@@ -38,29 +39,53 @@ export default function Footer() {
           </p>
 
           <p className="footer-email">
-            naturesoulresort@gmail.com
+            <a href="mailto:naturesoulresort@gmail.com">naturesoulresort@gmail.com</a>
           </p>
 
           <p className="footer-phone">
-            +91 73493 11300
+            <a href="tel:+917349311300">+91 73493 11300</a>
           </p>
         </div>
 
       </div>
       <div className="footer-socials">
-        <a href="#" className="social-icon insta">
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noreferrer"
+          className="social-icon insta"
+          aria-label="Instagram"
+        >
           <FaInstagram />
         </a>
 
-        <a href="#" className="social-icon fb">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noreferrer"
+          className="social-icon fb"
+          aria-label="Facebook"
+        >
           <FaFacebookF />
         </a>
 
-        <a href="https://wa.me/917349311300" target="_blank" className="social-icon whatsapp">
+        <a
+          href="https://wa.me/917349311300"
+          target="_blank"
+          rel="noreferrer"
+          className="social-icon whatsapp"
+          aria-label="WhatsApp"
+        >
           <FaWhatsapp />
         </a>
 
-        <a href="https://maps.app.goo.gl/7HaBjV8xz1pjXhdEA" className="social-icon map">
+        <a
+          href="https://maps.app.goo.gl/7HaBjV8xz1pjXhdEA"
+          target="_blank"
+          rel="noreferrer"
+          className="social-icon map"
+          aria-label="Location"
+        >
           <FaMapMarkerAlt />
         </a>
       </div>

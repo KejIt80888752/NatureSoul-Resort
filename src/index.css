@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: #1f2937;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,14 +19,12 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #ffffff;
+  color: #ff6c22;
   text-decoration: none;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -64,7 +62,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #ffffff;
+    color: #ff6c22;
   }
   button {
     background-color: #f9f9f9;
@@ -763,7 +761,7 @@ body, html, #root {
 
   .nav-links {
     position: absolute;
-    top: -75px;
+    top: 100%;          /* drop below the navbar instead of over it */
     left: 0;
     right: 0;
     background: #ffffff;
@@ -771,13 +769,16 @@ body, html, #root {
     flex-direction: column;
     gap: 16px;
     padding: 20px;
-    transform: translateY(-120%);
-    transition: transform 0.3s ease;
+    transform: translateY(-150%);
+    visibility: hidden;
+    transition: transform 0.3s ease, visibility 0.3s ease;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 20;
   }
 
   .nav-links.open {
     transform: translateY(0);
+    visibility: visible;
   }
 
   .nav-links a {
@@ -1033,7 +1034,21 @@ body, html, #root {
   transition: 0.3s;
 }
 
-.footer-col ul li:hover {
+.footer-col ul li:hover,
+.footer-col ul li:hover a {
+  color: #f59e0b;
+}
+
+.footer-col ul li a,
+.footer-email a,
+.footer-phone a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-email a:hover,
+.footer-phone a:hover {
   color: #f59e0b;
 }
 

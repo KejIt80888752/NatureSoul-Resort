@@ -2,28 +2,51 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import axios from "axios";
+import roomsData from "../data/roomsData";
+import { API_URL, hasApi, formatPrice } from "../services/api";
 
 export default function Rooms() {
   const [rooms, setRooms] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const guests = searchParams.get("guests");
 
   useEffect(() => {
+    let active = true;
+
     const fetchRooms = async () => {
+      // No backend configured → show the rooms bundled with the site
+      if (!hasApi) {
+        setRooms(roomsData);
+        setLoading(false);
+        return;
+      }
+
       try {
-        const res = await axios.get("http://localhost:5000/api/rooms");
-        console.log("ROOM API DATA:", res.data);   // 👈 ADD THIS
-        setRooms(res.data);
+        const res = await axios.get(`${API_URL}/api/rooms`);
+        if (!active) return;
+        setRooms(Array.isArray(res.data) && res.data.length ? res.data : roomsData);
       } catch (err) {
-        console.error("ROOM API ERROR:", err);     // 👈 ADD THIS
+        console.error("ROOM API ERROR:", err);
+        if (active) setRooms(roomsData); // backend down → still show the rooms
+      } finally {
+        if (active) setLoading(false);
       }
     };
+
     fetchRooms();
+    return () => {
+      active = false;
+    };
   }, []);
 
-
-
-  if (!rooms.length) return <p>Loading rooms...</p>;
+  if (loading) {
+    return (
+      <div className="rooms-page">
+        <p style={{ textAlign: "center" }}>Loading rooms...</p>
+      </div>
+    );
+  }
 
   const filteredRooms = guests
     ? rooms.filter(room => room.maxOccupancy >= Number(guests))
@@ -57,8 +80,8 @@ export default function Rooms() {
                 <p><strong>Max Occupancy:</strong> {room.maxOccupancy}</p>
                 <p><strong>Beds:</strong> {room.beds}</p>
                 <p><strong>AC/Non-AC:</strong> {room.ac}</p>
-                <p><strong>Amenities:</strong> {room.amenities.length > 0 ? room.amenities.join(", ") : "None"}</p>
-                <span className="price">₹{room.price}</span>
+                <p><strong>Amenities:</strong> {room.amenities?.length > 0 ? room.amenities.join(", ") : "None"}</p>
+                <span className="price">{formatPrice(room.price)}</span>
 
                 {room.maxOccupancy > 0 ? (
                   <Link to={`/rooms/${room.id}`} className="room-btn">

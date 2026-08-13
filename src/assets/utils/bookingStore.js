@@ -1,47 +1,36 @@
-import axios from "axios";
-
 const BOOKINGS_KEY = "resort_bookings";
 
 // Get all bookings
 export function getBookings() {
-  return JSON.parse(localStorage.getItem(BOOKINGS_KEY)) || [];
+  try {
+    return JSON.parse(localStorage.getItem(BOOKINGS_KEY)) || [];
+  } catch {
+    return [];
+  }
 }
 
-// Save booking
+// Save a booking locally (used when the site runs without a backend)
 export function bookRoom(booking) {
-  // const bookings = getBookings();
+  const bookings = getBookings();
 
-  // bookings.push({
-  //   ...booking,
-  //   bookedAt: new Date().toISOString(),
-  // });
+  bookings.push({
+    ...booking,
+    bookedAt: new Date().toISOString(),
+  });
 
-  // localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings));
-  axios
-    .post("http://localhost:5000/api/bookings", {
-      roomId: selectedRoom.id,
-      roomName: selectedRoom.name,
-      price: selectedRoom.price,
-      customerName: form.name,
-      phone: form.phone,
-      checkIn: form.checkIn,
-      checkOut: form.checkOut,
-      checkInTime: form.checkInTime,
-      checkOutTime: form.checkOutTime,
-      identityType: form.identityType,
-      identityNumber: form.identityNumber,
-    })
-    .then(() => setShowSuccess(true))
-    .catch(() => alert("Booking failed"));
+  localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings));
 
+  return bookings;
 }
 
-// Check room availability
+// Check room availability.
+// Demo bookings (no backend) are kept for reference but never block a room,
+// so a test booking does not make the room look sold out to the next visitor.
 export function isRoomAvailable(roomId) {
   const bookings = getBookings();
 
   return !bookings.some(
-    (b) => Number(b.id) === Number(roomId)
+    (b) => !b.demo && Number(b.roomId ?? b.id) === Number(roomId)
   );
 }
 
@@ -50,7 +39,7 @@ export function clearRoom(roomId) {
   const bookings = getBookings();
 
   const updated = bookings.filter(
-    (b) => Number(b.id) !== Number(roomId)
+    (b) => Number(b.roomId ?? b.id) !== Number(roomId)
   );
 
   localStorage.setItem(BOOKINGS_KEY, JSON.stringify(updated));

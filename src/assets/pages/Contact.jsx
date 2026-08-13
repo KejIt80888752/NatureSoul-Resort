@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import "../style/contact.css";
 
 export default function Contact() {
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,7 +95,7 @@ Karnataka – 562103</p>
         <div className="contact-cta">
           <h2>Ready to Escape the City?</h2>
           <button
-            onClick={() => window.location.href = "/rooms"}
+            onClick={() => navigate("/rooms")}
           >
             Book Your Stay
           </button>
