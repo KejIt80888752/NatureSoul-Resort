@@ -1,0 +1,92 @@
+/* ================= TOP BAR ================= */
+
+.topbar {
+  background: #f9750f;
+  color: white;
+  padding: 8px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+/* LEFT SIDE */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.topbar-left span {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.topbar-left a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.topbar-left a:hover {
+  text-decoration: underline;
+}
+
+/* RIGHT SIDE */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topbar-right a {
+  color: white;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.topbar-right a:hover {
+  color: #0b0b0b;
+}
+
+/* ICON */
+.icon {
+  margin-right: 6px;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .topbar {
+    padding: 10px 15px;
+    font-size: 12px;
+    flex-direction: column;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .topbar-left {
+    justify-content: center;
+  }
+
+  .topbar-left span {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .topbar-right {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-left span:first-child {
+    display: none; /* hide long address in very small screens */
+  }
+
+  .topbar {
+    font-size: 11px;
+  }
+}
