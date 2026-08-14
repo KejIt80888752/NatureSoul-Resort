@@ -18,6 +18,7 @@ export default function Booking() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
+    whatsapp: "",
     email: "",
     checkIn: "",
     checkOut: "",
@@ -95,6 +96,11 @@ export default function Booking() {
       return;
     }
 
+    if (form.whatsapp && !phoneRegex.test(form.whatsapp)) {
+      alert("WhatsApp number must be exactly 10 digits");
+      return;
+    }
+
     const checkInDateTime = new Date(`${form.checkIn}T${form.checkInTime}`);
     const checkOutDateTime = new Date(`${form.checkOut}T${form.checkOutTime}`);
 
@@ -118,6 +124,7 @@ export default function Booking() {
         price: selectedRoom.price,
         customerName: form.name,
         phone: form.phone,
+        whatsapp: form.whatsapp || form.phone,
         email: form.email,
         checkIn: form.checkIn,
         checkOut: form.checkOut,
@@ -137,6 +144,7 @@ export default function Booking() {
       formData.append("price", selectedRoom.price);
       formData.append("customerName", form.name);
       formData.append("phone", form.phone);
+      formData.append("whatsapp", form.whatsapp || form.phone);
       formData.append("email", form.email);
       formData.append("checkIn", form.checkIn);
       formData.append("checkOut", form.checkOut);
@@ -227,6 +235,21 @@ export default function Booking() {
                 required
                 onChange={handleChange}
                 maxLength="10"
+              />
+            </div>
+
+            {/* WhatsApp */}
+            <div className="form-group">
+              <label htmlFor="whatsapp">
+                WhatsApp Number <span className="optional">(if different)</span>
+              </label>
+              <input
+                type="number"
+                id="whatsapp"
+                name="whatsapp"
+                placeholder="Same as phone number"
+                value={form.whatsapp}
+                onChange={handleChange}
               />
             </div>
 

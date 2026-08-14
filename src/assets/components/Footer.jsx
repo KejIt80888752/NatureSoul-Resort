@@ -25,6 +25,14 @@ export default function Footer() {
             <li><Link to="/contact">Contact Us</Link></li>
             <li><Link to="/rooms">Rooms</Link></li>
             <li><Link to="/gallery">Gallery</Link></li>
+            <li>
+              <button
+                className="terms-link"
+                onClick={() => window.dispatchEvent(new Event("nsr:open-terms"))}
+              >
+                Terms &amp; Conditions
+              </button>
+            </li>
           </ul>
         </div>
 

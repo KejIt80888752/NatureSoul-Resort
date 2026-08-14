@@ -84,6 +84,7 @@ exports.createBooking = async (req, res) => {
           price: String(room.price), // price comes from the database, never from the browser
           customerName: req.body.customerName.trim(),
           phone: req.body.phone,
+          whatsapp: (req.body.whatsapp || "").trim() || req.body.phone,
           email: req.body.email.trim(),
           checkIn,
           checkOut,

@@ -1,0 +1,193 @@
+/* ================= TERMS & CONDITIONS GATE ================= */
+
+.terms-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001; /* above the sticky navbar (9999) */
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: termsFade 0.25s ease;
+}
+
+@keyframes termsFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.terms-modal {
+  width: 100%;
+  max-width: 640px;
+  max-height: min(88vh, 760px);
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  color: #1f2937;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.35);
+}
+
+.terms-head {
+  padding: 22px 26px 18px;
+  background: linear-gradient(135deg, #ff6c22, #e2571a);
+  color: #ffffff;
+}
+
+.terms-head h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.terms-head p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  opacity: 0.92;
+}
+
+.terms-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 26px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.terms-intro {
+  margin: 0 0 18px;
+  color: #334155;
+}
+
+.terms-body section {
+  margin-bottom: 18px;
+}
+
+.terms-body h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.terms-body ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #475569;
+}
+
+.terms-body li {
+  margin-bottom: 6px;
+}
+
+.terms-contact {
+  margin: 22px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.terms-contact a {
+  color: #ff6c22;
+  font-weight: 600;
+}
+
+.terms-foot {
+  padding: 16px 26px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.terms-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.terms-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff6c22;
+  cursor: pointer;
+}
+
+.terms-accept {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #ff6c22;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.terms-accept:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.terms-accept:hover:not(:disabled) {
+  transform: none;
+  box-shadow: 0 10px 22px rgba(255, 108, 34, 0.35);
+  border-color: transparent;
+}
+
+/* The chat bubble should not float over the terms dialog */
+body.terms-open .chat-launcher,
+body.terms-open .chat-panel {
+  display: none;
+}
+
+/* Footer link that reopens the terms */
+.terms-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.terms-link:hover {
+  color: #f59e0b;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .terms-overlay {
+    padding: 12px;
+  }
+
+  .terms-modal {
+    max-height: 92vh;
+  }
+
+  .terms-head,
+  .terms-body,
+  .terms-foot {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .terms-foot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .terms-accept {
+    width: 100%;
+  }
+}

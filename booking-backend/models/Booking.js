@@ -15,6 +15,7 @@ const Booking = sequelize.define(
 
     customerName: { type: DataTypes.STRING, allowNull: false },
     phone: { type: DataTypes.STRING, allowNull: false },
+    whatsapp: DataTypes.STRING, // falls back to phone when the guest leaves it blank
     email: { type: DataTypes.STRING, allowNull: false },
 
     checkIn: { type: DataTypes.DATEONLY, allowNull: false },
