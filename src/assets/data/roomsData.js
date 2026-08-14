@@ -127,4 +127,12 @@ const roomsData = [
   }
 ];
 
+// Rooms coming from the API carry availability and price, but the photos live
+// in this bundle — this matches them up by name.
+export const imageForRoom = (name) =>
+  roomsData.find((r) => r.name === name)?.img || "";
+
+export const descriptionForRoom = (name) =>
+  roomsData.find((r) => r.name === name)?.desc || "";
+
 export default roomsData;

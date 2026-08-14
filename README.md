@@ -1,16 +1,60 @@
-# React + Vite
+# Nature Soul Resort
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Resort website (React + Vite) and its booking API.
 
-Currently, two official plugins are available:
+**Live site:** https://kejit80888752.github.io/NatureSoul-Resort/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+src/              React website  → deployed to GitHub Pages (gh-pages branch)
+booking-backend/  Express + PostgreSQL booking API → see booking-backend/README.md
+```
 
-## React Compiler
+## Website
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev          # static mode: rooms come from src/assets/data/roomsData.js
+npm run dev:api      # talks to a booking API on http://localhost:5055
+npm run build        # production build into dist/
+```
 
-## Expanding the ESLint configuration
+### Two modes
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Without `VITE_API_URL` the site runs standalone: the room list is bundled with
+the site, and a booking is confirmed in the browser (saved to localStorage) so
+the site can be demoed without any server.
+
+With `VITE_API_URL` set at build time, the same pages read live availability
+from the API and every booking is stored in the database.
+
+```bash
+VITE_API_URL=https://your-api.onrender.com npm run build
+```
+
+Optional: `VITE_RECAPTCHA_SITE_KEY` — when set, the booking form shows a
+reCAPTCHA and the API verifies it (needs `RECAPTCHA_SECRET` on the server, and
+the site key must be registered for the site's domain).
+
+## Deploying the website
+
+```bash
+npm run build
+cp dist/index.html dist/404.html
+# publish the contents of dist/ to the gh-pages branch
+```
+
+Routing uses `HashRouter` (`/#/rooms`), so deep links work on GitHub Pages
+without any server configuration.
+
+## Chat assistant
+
+The floating assistant answers from `src/assets/data/resortInfo.js` and
+`src/assets/utils/chatBrain.js` — no API key, no external service. Room names
+and prices come from the same data the site renders, so they never drift.
+Anything not in those files is handed over to the resort team instead of being
+guessed.
+
+## Admin
+
+`/#/admin/bookings` lists real bookings. It asks once for the admin key
+(`ADMIN_KEY` from the API environment) and keeps it in the browser.

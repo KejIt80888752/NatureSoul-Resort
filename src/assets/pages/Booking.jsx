@@ -159,17 +159,21 @@ export default function Booking() {
 
       if (response.status === 201) {
         setShowSuccess(true);
-
-        if (response.data.emailSent === false) {
-          alert("Booking confirmed, but email could not be sent.");
-        }
       } else {
         alert("Booking failed. Please try again.");
       }
 
     } catch (error) {
       console.error(error);
-      alert("Booking failed. Please try again.");
+
+      // The API sends back exactly what went wrong (validation, room already booked)
+      const serverErrors = error.response?.data?.errors;
+
+      if (Array.isArray(serverErrors) && serverErrors.length) {
+        alert(serverErrors.join("\n"));
+      } else {
+        alert("Booking failed. Please try again.");
+      }
     }
   };
 

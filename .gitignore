@@ -2,3 +2,9 @@ node_modules
 dist
 .DS_Store
 *.local
+.env
+booking-backend/node_modules
+booking-backend/.env
+booking-backend/*.sqlite
+booking-backend/uploads
+booking-backend/temp

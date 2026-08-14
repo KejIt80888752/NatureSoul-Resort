@@ -1,0 +1,37 @@
+<div style="font-family:Arial">
+
+    <h2>NatureSoul Resort</h2>
+
+    <p>Hello {{name}},</p>
+
+    <p>Your booking for <b>{{roomName}}</b> has been confirmed.</p>
+
+    <table cellpadding="6">
+
+        <tr>
+            <td><b>Check-in:</b></td>
+            <td>{{checkIn}} , {{checkInTime}}</td>
+        </tr>
+
+        <tr>
+            <td><b>Check-out:</b></td>
+            <td>{{checkOut}} , {{checkOutTime}}</td>
+        </tr>
+
+        <tr>
+            <td><b>Room Price:</b></td>
+            <td>₹{{price}}</td>
+        </tr>
+
+        <tr>
+            <td><b>Total Amount:</b></td>
+            <td>₹{{total}}</td>
+        </tr>
+
+    </table>
+
+    <p>Invoice PDF is attached with this email.</p>
+
+    {{!-- <p><b>NatureSoul Resort</b></p> --}}
+
+</div>
