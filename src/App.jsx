@@ -14,6 +14,7 @@ import Bookings from "./assets/admin/Bookings";
 import RoomsManage from "./assets/admin/RoomsManage";
 import TopBar from "./assets/components/TopBar";
 import ScrollToTop from "./assets/components/ScrollToTop";
+import ChatBot from "./assets/components/ChatBot";
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
         {/* Unknown URL → home instead of a blank page */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+
+      <ChatBot />
     </HashRouter>
   );
 }
