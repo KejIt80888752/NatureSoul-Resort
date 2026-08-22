@@ -1,4 +1,7 @@
 require("dotenv").config();
+
+// The resort works in IST; date logic (availability, "today") follows this.
+process.env.TZ = process.env.TZ || "Asia/Kolkata";
 const express = require("express");
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
@@ -7,7 +10,7 @@ const sequelize = require("./config/db");
 const { connectDB } = require("./config/db");
 const bookingRoutes = require("./routes/bookingRoutes");
 const roomRoutes = require("./routes/roomRoutes");
-const adminAuth = require("./middlewares/adminAuth");
+const adminRoutes = require("./routes/adminRoutes");
 const seedRooms = require("./seed/roomSeed");
 
 const app = express();
@@ -52,19 +55,8 @@ app.get("/health", (req, res) => res.json({ status: "ok", time: new Date().toISO
 app.use("/api/rooms", roomRoutes);
 app.use("/api/bookings", bookingRoutes);
 
-// Kept for the existing admin dashboard
-app.get("/api/admin/bookings", adminAuth, async (req, res) => {
-  try {
-    const { Booking } = require("./models");
-    const bookings = await Booking.findAll({
-      attributes: { exclude: ["roomImage", "invoice_pdf"] },
-      order: [["createdAt", "DESC"]],
-    });
-    res.json(bookings);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// Staff dashboard: bookings, calendar, blocks, rate & photo updates
+app.use("/api/admin", adminRoutes);
 
 app.use((err, req, res, next) => {
   console.error("UNHANDLED:", err.message);
