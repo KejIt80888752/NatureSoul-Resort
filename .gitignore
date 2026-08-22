@@ -8,3 +8,5 @@ booking-backend/.env
 booking-backend/*.sqlite
 booking-backend/uploads
 booking-backend/temp
+
+dist-dashboard

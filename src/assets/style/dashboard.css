@@ -1,3 +1,19 @@
+/* Base reset — the dashboard is also built as a standalone site, so it cannot
+   rely on the website's index.css being loaded. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
 /* ================= ADMIN DASHBOARD ================= */
 
 .dash,
