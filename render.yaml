@@ -1,0 +1,45 @@
+# Render Blueprint — deploys the booking API.
+# In Render: New → Blueprint → connect this repository. Render reads this file
+# and creates the service with the right settings; only the values marked
+# sync:false have to be typed in by hand.
+
+services:
+  - type: web
+    name: naturesoul-booking-api
+    runtime: node
+    plan: starter          # Rs. ~600/month. "free" also works but sleeps after 15 min.
+    region: singapore      # closest region to India
+    rootDir: booking-backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+
+      # Resort timezone — availability and "today" follow this
+      - key: TZ
+        value: Asia/Kolkata
+
+      # Only these sites may call the API (website + staff dashboard)
+      - key: ALLOWED_ORIGINS
+        value: https://kejit80888752.github.io
+
+      # Render generates a strong key and shows it in the dashboard.
+      # Read it from there — it is the dashboard password. Do not share it.
+      - key: ADMIN_KEY
+        generateValue: true
+
+      # Paste the Neon connection string here (Render dashboard → Environment)
+      - key: DATABASE_URL
+        sync: false
+
+      # Optional — booking confirmation email
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: OWNER_EMAIL
+        sync: false
