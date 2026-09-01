@@ -4,6 +4,7 @@
 // to the resort team instead of being guessed.
 
 import { resortInfo, askTheTeam } from "../data/resortInfo";
+import { mealTimings, menuHighlights } from "../data/foodMenu";
 import { formatPrice } from "../services/api";
 
 const { contact, address, mapHref, amenities, rooms } = resortInfo;
@@ -52,6 +53,7 @@ const largest = () =>
 const GO_ROOMS = { label: "See all rooms", to: "/rooms" };
 const GO_CONTACT = { label: "Contact page", to: "/contact" };
 const GO_GALLERY = { label: "View gallery", to: "/gallery" };
+const GO_MENU = { label: "See full menu", to: "/menu" };
 const CALL = { label: `Call ${contact.phone}`, href: contact.phoneHref };
 const WHATSAPP = { label: "WhatsApp us", href: contact.whatsappHref };
 
@@ -165,12 +167,18 @@ const intents = [
   {
     id: "food",
     keywords: [
-      "food", "dining", "restaurant", "breakfast", "lunch", "dinner", "meal",
-      "meals", "kitchen", "veg", "non veg", "saapadu", "சாப்பாடு", "உணவு",
+      "food", "menu", "dining", "restaurant", "breakfast", "lunch", "dinner", "meal",
+      "meals", "kitchen", "veg", "non veg", "thali", "snacks", "coffee", "tea",
+      "juice", "mojito", "milkshake", "biryani", "chicken", "saapadu", "menu card",
+      "சாப்பாடு", "உணவு", "மெனு",
     ],
     reply: () => ({
-      text: `We have Fine Dining at the resort, and the 2BHK and Duplex villas come with their own kitchen.\n\nMenu, meal plans and pricing change seasonally — our team will share the current details.`,
-      actions: [WHATSAPP, CALL],
+      text:
+        `Yes — food is served through the day:\n\n` +
+        mealTimings.map((m) => `• ${m.name}: ${m.time}`).join("\n") +
+        `\n\n${menuHighlights.map((h) => `• ${h}`).join("\n")}\n\n` +
+        `The 2BHK and Duplex villas also have their own kitchen. Tell us your meal preference in advance and the kitchen keeps it ready.`,
+      actions: [GO_MENU, WHATSAPP],
     }),
   },
 
@@ -310,9 +318,9 @@ export const welcomeMessage = () => ({
 
 export const quickQuestions = [
   "Room prices?",
+  "Food menu?",
   "How to book?",
   "Where are you located?",
-  "What amenities do you have?",
 ];
 
 export function getReply(question) {

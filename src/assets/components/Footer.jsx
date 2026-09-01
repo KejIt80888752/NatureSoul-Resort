@@ -25,6 +25,7 @@ export default function Footer() {
             <li><Link to="/contact">Contact Us</Link></li>
             <li><Link to="/rooms">Rooms</Link></li>
             <li><Link to="/gallery">Gallery</Link></li>
+            <li><Link to="/menu">Food Menu</Link></li>
             <li>
               <button
                 className="terms-link"
@@ -58,7 +59,7 @@ export default function Footer() {
       </div>
       <div className="footer-socials">
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/naturessoulresort"
           target="_blank"
           rel="noreferrer"
           className="social-icon insta"

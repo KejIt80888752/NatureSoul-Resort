@@ -1,0 +1,212 @@
+/* ================= FOOD MENU PAGE ================= */
+
+.menu-page {
+  background: #fdfcf7;
+  padding-bottom: 20px;
+}
+
+.menu-hero {
+  background: linear-gradient(135deg, #ff6c22, #e2571a);
+  color: #ffffff;
+  text-align: center;
+  padding: 70px 20px 60px;
+}
+
+.menu-hero h1 {
+  margin: 0 0 10px;
+  font-size: 42px;
+}
+
+.menu-hero p {
+  margin: 0;
+  font-size: 17px;
+  opacity: 0.95;
+}
+
+.menu-grid {
+  max-width: 1200px;
+  margin: -30px auto 0;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.menu-card {
+  background: #fffdf6;
+  border: 1px solid #e8e2d0;
+  border-radius: 16px;
+  padding: 24px 22px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.menu-card-head {
+  text-align: center;
+  border-bottom: 2px solid #f1ead6;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.menu-card-head h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  color: #14532d;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.menu-time {
+  display: inline-block;
+  background: #14532d;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+
+.menu-group {
+  margin-bottom: 22px;
+}
+
+.menu-group:last-child {
+  margin-bottom: 0;
+}
+
+.menu-group h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  color: #b8410f;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.menu-group-note {
+  font-size: 12px;
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.menu-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-group li {
+  margin-bottom: 11px;
+}
+
+.menu-item-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 15px;
+  color: #1f2937;
+}
+
+.menu-item-name {
+  white-space: normal;
+}
+
+.menu-dots {
+  flex: 1;
+  border-bottom: 1px dotted #cbbfa4;
+  transform: translateY(-4px);
+  min-width: 18px;
+}
+
+.menu-item-price {
+  font-weight: 700;
+  color: #14532d;
+  white-space: nowrap;
+}
+
+.menu-item-price small {
+  font-weight: 500;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.menu-item-note {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* CTA */
+.menu-cta {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 44px 20px;
+  text-align: center;
+}
+
+.menu-cta h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: #14532d;
+}
+
+.menu-cta p {
+  margin: 0 auto 22px;
+  max-width: 520px;
+  color: #475569;
+}
+
+.menu-cta-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.menu-btn {
+  padding: 13px 26px;
+  border: 2px solid #ff6c22;
+  border-radius: 10px;
+  background: #ff6c22;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.menu-btn.outline {
+  background: transparent;
+  color: #ff6c22;
+}
+
+.menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(255, 108, 34, 0.3);
+}
+
+@media (max-width: 768px) {
+  .menu-hero {
+    padding: 50px 18px 46px;
+  }
+
+  .menu-hero h1 {
+    font-size: 32px;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .menu-card {
+    padding: 20px 18px;
+  }
+}

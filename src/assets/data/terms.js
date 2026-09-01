@@ -8,7 +8,7 @@
 // Bump TERMS_VERSION whenever the text changes: every visitor is then asked to
 // accept the new version once.
 
-export const TERMS_VERSION = "1.0";
+export const TERMS_VERSION = "1.1";
 export const TERMS_UPDATED = "August 2026";
 
 export const termsSections = [
@@ -37,7 +37,8 @@ export const termsSections = [
   {
     title: "4. Payment, Cancellation & Refund",
     points: [
-      "Advance payment, cancellation and refund terms are confirmed by the resort team for each booking.",
+      "All bookings are non-refundable. Once a booking is confirmed, the amount paid is not refunded on cancellation or no-show.",
+      "Date changes are subject to availability and are at the resort's discretion.",
       "Please contact the resort directly before cancelling or modifying a confirmed booking.",
     ],
   },

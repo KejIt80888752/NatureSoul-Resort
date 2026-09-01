@@ -6,7 +6,7 @@
 // automatically — the wording below is what gets submitted to Meta.
 
 import { resortInfo } from "../data/resortInfo";
-import { foodMenu } from "../data/foodMenu";
+import { mealTimings, menuHighlights } from "../data/foodMenu";
 import { formatPrice } from "../services/api";
 
 const { contact, address, mapHref, name } = resortInfo;
@@ -64,12 +64,12 @@ export const messageTemplates = [
     id: "menu",
     label: "Food menu",
     build: () => {
-      const meals = foodMenu.meals
-        .map((meal) => `*${meal.name}* (${meal.time})\n${meal.items.map((i) => `• ${i}`).join("\n")}`)
-        .join("\n\n");
+      const timings = mealTimings.map((m) => `${m.name}: ${m.time}`).join("\n");
+      const highlights = menuHighlights.map((h) => `• ${h}`).join("\n");
 
       return (
-        `*Food menu*\n\n${meals}\n\n${foodMenu.note}\n\n` +
+        `*Food at the resort*\n\n${timings}\n\n${highlights}\n\n` +
+        `Full menu: https://kejit80888752.github.io/NatureSoul-Resort/#/menu\n\n` +
         `Please reply with your meal preference (veg / non-veg) and the number of guests, so our kitchen can prepare in advance.`
       );
     },

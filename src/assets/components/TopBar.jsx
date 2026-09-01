@@ -26,7 +26,7 @@ export default function TopBar() {
         <a href="https://facebook.com" target="_blank" rel="noreferrer">
           <FaFacebookF />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noreferrer">
+        <a href="https://www.instagram.com/naturessoulresort" target="_blank" rel="noreferrer">
           <FaInstagram />
         </a>
         <a href="https://wa.me/919986023980" target="_blank" rel="noreferrer">

@@ -81,14 +81,15 @@ Hello {{1}}, here are the details for your stay at Nature Soul Resort.
 
 *How to reach us*
 23 Sultanpet Road, Near Govt Middle School, Nandi Hills, Nandi, Karnataka - 562103
-Map: https://maps.app.goo.gl/7HaBjV8xz1pjXhdEA
 Free parking is available inside the property.
 
-*Food menu*
-Breakfast (8:00 AM - 10:00 AM): Idli / Dosa, Pongal, Bread & Eggs, Tea / Coffee
-Lunch (1:00 PM - 3:00 PM): South Indian meals, Chicken / Mutton curry, Rice, Rasam, Curd
-Evening snacks (5:00 PM - 6:30 PM): Bajji / Bonda, Tea / Coffee
-Dinner (8:00 PM - 10:00 PM): Chapati / Parotta, Veg & Non-veg curry, Fried Rice / Noodles
+*Food timings*
+Breakfast: 7:30 AM - 10:30 AM
+Lunch: 1:00 PM - 3:00 PM
+Starters, snacks and beverages: after 5:00 PM
+
+South Indian Thali Rs. 350 per plate, North Indian Meal Rs. 400 per plate.
+Full menu: https://kejit80888752.github.io/NatureSoul-Resort/#/menu
 
 Please reply with your meal preference (veg / non-veg) and the number of guests, so our kitchen can prepare in advance.
 ```
@@ -99,9 +100,11 @@ Please reply with your meal preference (veg / non-veg) and the number of guests,
 |---|---|---|
 | {{1}} | Guest name | Ramesh Kumar |
 
-> **Menu must be replaced.** The menu above is a placeholder written for the
-> demo. Get the resort's real menu and timings before submitting — once a
-> template is approved, changing the text means re-submitting it.
+**Buttons:** URL button → `https://maps.app.goo.gl/7HaBjV8xz1pjXhdEA` (label: "Open in Maps")
+
+> The full menu has 55 items, far beyond WhatsApp's 1024-character template
+> limit. The message therefore carries the timings and the headline prices, and
+> links to the menu page on the website — which always shows the current menu.
 
 ---
 

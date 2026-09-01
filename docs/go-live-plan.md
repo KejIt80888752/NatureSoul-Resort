@@ -84,12 +84,12 @@ Status legend: ✅ done · 🔄 in progress · ⏸ blocked (waiting on someone) 
 |---|---|---|
 | 1 | Vendor and monthly budget approval | Week 1, everything OTA |
 | 2 | Extranet logins for Booking.com, Agoda, Goibibo, MakeMyTrip, Airbnb | Week 2 |
-| 3 | Resort Gmail + app password (for confirmation emails) | 2.5 |
+| 3 | Resort email ✅ naturesoulresort@gmail.com · app password still needed | 2.5 |
 | 4 | Bank account + GST details (for payment gateway) | 2.6, 2.7 |
-| 5 | Real food menu and meal timings | 4.3 |
-| 6 | Cancellation / refund / advance payment policy | Terms & Conditions, 4.3 |
+| 5 | ~~Real food menu and meal timings~~ | ✅ received, live on the website |
+| 6 | ~~Cancellation policy~~ | ✅ "no refund" — added to Terms (v1.1) |
 | 7 | Correct phone number and email — the site currently shows two different sets | Website, WhatsApp templates |
-| 8 | Instagram and Facebook page links | Website footer |
+| 8 | ~~Instagram link~~ ✅ received · Facebook page link | Website footer |
 
 ---
 

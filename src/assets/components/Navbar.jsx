@@ -44,6 +44,10 @@ export default function Navbar() {
           Gallery
         </NavLink>
 
+        <NavLink to="/menu" className="nav-link" onClick={() => setMenuOpen(false)}>
+          Menu
+        </NavLink>
+
         <NavLink to="/about" className="nav-link" onClick={() => setMenuOpen(false)}>
           About
         </NavLink>
