@@ -35,7 +35,9 @@ export default function Rooms() {
           list.map((room) => ({
             ...room,
             available: room.available !== false,
-            img: room.img || imageForRoom(room.name),
+            img: room.photoUrl
+              ? `${API_URL}${room.photoUrl}`
+              : room.img || imageForRoom(room.name),
             desc: room.desc || descriptionForRoom(room.name),
           }))
         );

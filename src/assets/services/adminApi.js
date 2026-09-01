@@ -217,6 +217,34 @@ export const adminApi = {
     return res.data;
   },
 
+  // Upload a real photo file. In demo mode it is kept in this browser only —
+  // the dashboard says so, because without the server there is nowhere to store it.
+  async uploadRoomPhoto(key, roomId, file) {
+    if (isDemoMode) {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      const overrides = read(DEMO_ROOMS, {});
+      overrides[roomId] = { ...(overrides[roomId] || {}), img: dataUrl };
+      write(DEMO_ROOMS, overrides);
+      return { success: true, demo: true };
+    }
+
+    const form = new FormData();
+    form.append("photo", file);
+
+    const res = await axios.post(
+      `${API_URL}/api/admin/rooms/${roomId}/photo`,
+      form,
+      authHeader(key)
+    );
+    return res.data;
+  },
+
   async updateRoom(key, roomId, updates) {
     if (isDemoMode) {
       const overrides = read(DEMO_ROOMS, {});

@@ -55,6 +55,19 @@ const Room = sequelize.define(
       type: DataTypes.STRING,
       defaultValue: "",
     },
+    // Uploaded photo, kept in the database so it survives every restart and redeploy
+    photo: {
+      type: DataTypes.BLOB,
+      allowNull: true,
+    },
+    photoType: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    photoUpdatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
     desc: {
       type: DataTypes.TEXT,
       defaultValue: "",

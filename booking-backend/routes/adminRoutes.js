@@ -6,6 +6,7 @@ const Room = require("../models/Room");
 const Booking = require("../models/Booking");
 const RoomBlock = require("../models/RoomBlock");
 const adminAuth = require("../middlewares/adminAuth");
+const upload = require("../middlewares/upload");
 const { blockOverlapWhere, addDays, todayLocal } = require("../utils/availability");
 
 router.use(adminAuth);
@@ -142,6 +143,50 @@ router.put("/rooms/:id", async (req, res) => {
   } catch (error) {
     console.error("ROOM UPDATE ERROR:", error);
     res.status(500).json({ message: "Could not update the room" });
+  }
+});
+
+/**
+ * POST /api/admin/rooms/:id/photo   (multipart, field name "photo")
+ * Uploads a room photo. Stored in the database, so it survives restarts and
+ * redeploys — a file saved on the server's disk would be wiped every deploy.
+ */
+router.post("/rooms/:id/photo", upload.single("photo"), async (req, res) => {
+  try {
+    const room = await Room.findByPk(req.params.id);
+    if (!room) return res.status(404).json({ message: "Room not found" });
+    if (!req.file) return res.status(400).json({ message: "No image received" });
+
+    await room.update({
+      photo: req.file.buffer,
+      photoType: req.file.mimetype,
+      photoUpdatedAt: new Date(),
+      img: "", // an uploaded photo takes priority over an external URL
+    });
+
+    res.json({
+      success: true,
+      url: `/api/rooms/${room.id}/photo?v=${Date.now()}`,
+    });
+  } catch (error) {
+    console.error("PHOTO UPLOAD ERROR:", error);
+    res.status(500).json({ message: "Could not save the photo" });
+  }
+});
+
+/**
+ * DELETE /api/admin/rooms/:id/photo — back to the default photo
+ */
+router.delete("/rooms/:id/photo", async (req, res) => {
+  try {
+    const room = await Room.findByPk(req.params.id);
+    if (!room) return res.status(404).json({ message: "Room not found" });
+
+    await room.update({ photo: null, photoType: null, photoUpdatedAt: null });
+    res.json({ success: true });
+  } catch (error) {
+    console.error("PHOTO DELETE ERROR:", error);
+    res.status(500).json({ message: "Could not remove the photo" });
   }
 });
 

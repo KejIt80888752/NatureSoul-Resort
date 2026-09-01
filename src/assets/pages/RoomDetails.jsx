@@ -30,7 +30,9 @@ export default function RoomDetails() {
 
         setRoom({
           ...live,
-          img: live.img || imageForRoom(live.name),
+          img: live.photoUrl
+            ? `${API_URL}${live.photoUrl}`
+            : live.img || imageForRoom(live.name),
           desc: live.desc || descriptionForRoom(live.name),
         });
         setAvailable(live.available !== false);
