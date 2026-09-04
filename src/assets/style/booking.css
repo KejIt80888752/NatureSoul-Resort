@@ -240,3 +240,29 @@
     max-width: 250px;
   }
 }
+/* Booking request sent (while the booking server is not live) */
+.success-wa {
+  display: inline-block;
+  margin: 6px 0 10px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.success-wa:hover {
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.35);
+}
+
+.success-call {
+  font-size: 14px;
+  color: #475569;
+}
+
+.success-call a {
+  color: #ff6c22;
+  font-weight: 600;
+}

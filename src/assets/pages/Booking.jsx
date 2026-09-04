@@ -5,9 +5,12 @@ import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 import { API_URL, hasApi, RECAPTCHA_SITE_KEY, formatPrice } from "../services/api";
 import { bookRoom } from "../utils/bookingStore";
+import { buildEnquiryMessage, whatsappLink } from "../utils/guestMessages";
+import { resortInfo } from "../data/resortInfo";
 
 export default function Booking() {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [requestLink, setRequestLink] = useState(null); // WhatsApp link, when there is no server yet
   const [captchaValue, setCaptchaValue] = useState(null);
 
   const location = useLocation();
@@ -114,9 +117,15 @@ export default function Booking() {
       return;
     }
 
-    // No backend configured → confirm the booking locally so the site
-    // stays usable as a static demo.
+    // No booking server yet → this must never look like a confirmed booking.
+    // The details are sent to the resort on WhatsApp so a real person receives
+    // them and confirms.
     if (!hasApi) {
+      const link = whatsappLink(
+        resortInfo.contact.whatsapp,
+        buildEnquiryMessage(form, selectedRoom)
+      );
+
       bookRoom({
         demo: true,
         roomId: selectedRoom.id,
@@ -133,7 +142,13 @@ export default function Booking() {
         identityType: form.identityType,
         identityNumber: form.identityNumber,
       });
+
+      setRequestLink(link);
       setShowSuccess(true);
+
+      // Best effort: open WhatsApp straight away. The modal keeps a button in
+      // case the browser blocks it.
+      if (link) window.open(link, "_blank", "noopener");
       return;
     }
 
@@ -382,7 +397,7 @@ export default function Booking() {
             )}
 
             <button type="submit" className="confirm-btn">
-              Confirm Booking
+              {hasApi ? "Confirm Booking" : "Send Booking Request"}
             </button>
           </form>
         </div>
@@ -393,13 +408,36 @@ export default function Booking() {
         <div className="success-overlay">
           <div className="success-modal">
             <div className="checkmark">✔</div>
-            <h2>Booking Confirmed!</h2>
-            <p>
-              Your stay at <strong>{selectedRoom.name}</strong> is reserved.
-            </p>
+
+            {requestLink ? (
+              <>
+                <h2>Booking request sent</h2>
+                <p>
+                  Your request for <strong>{selectedRoom.name}</strong> has been sent to
+                  our team. We will confirm availability on WhatsApp or by phone shortly.
+                </p>
+
+                <a className="success-wa" href={requestLink} target="_blank" rel="noreferrer">
+                  If WhatsApp did not open, tap here
+                </a>
+
+                <p className="success-call">
+                  Or call us: <a href={resortInfo.contact.phoneHref}>{resortInfo.contact.phone}</a>
+                </p>
+              </>
+            ) : (
+              <>
+                <h2>Booking Confirmed!</h2>
+                <p>
+                  Your stay at <strong>{selectedRoom.name}</strong> is reserved.
+                </p>
+              </>
+            )}
+
             <button
               onClick={() => {
                 setShowSuccess(false);
+                setRequestLink(null);
                 navigate("/rooms");
               }}
             >

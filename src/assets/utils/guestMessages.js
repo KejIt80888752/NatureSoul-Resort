@@ -82,6 +82,22 @@ export const buildMessage = (templateId, booking) =>
 export const buildFullMessage = (booking) =>
   messageTemplates.map((t) => t.build(booking)).join("\n\n———\n\n");
 
+// A booking request going the other way: from the guest to the resort.
+// Used while the booking server is not live, so a request actually reaches the
+// team instead of only being stored in the guest's browser.
+export const buildEnquiryMessage = (form, room) =>
+  `*New booking request from the website*\n\n` +
+  `Room: ${room?.name || "-"}\n` +
+  `Tariff: ${formatPrice(room?.price)} per night\n\n` +
+  `Name: ${form.name}\n` +
+  `Phone: ${form.phone}\n` +
+  (form.whatsapp && form.whatsapp !== form.phone ? `WhatsApp: ${form.whatsapp}\n` : "") +
+  `Email: ${form.email}\n\n` +
+  `Check-in: ${form.checkIn}${form.checkInTime ? `, ${form.checkInTime}` : ""}\n` +
+  `Check-out: ${form.checkOut}${form.checkOutTime ? `, ${form.checkOutTime}` : ""}\n` +
+  `ID proof: ${(form.identityType || "").toUpperCase()} ${form.identityNumber}\n\n` +
+  `Please confirm availability for these dates.`;
+
 export const whatsappLink = (number, text) => {
   const digits = String(number || "").replace(/\D/g, "");
   if (!digits) return null;
