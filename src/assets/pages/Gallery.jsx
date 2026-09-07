@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import "../style/gallery.css";
 
-// Seven clearly different photographs. Near-identical frames (_P9A1352, _P9A1185, _P9A1349) are left
-// out on purpose — the same shot twice looked like a mistake in the gallery.
+// Eleven photographs of the property — exteriors, the numbered villas, room
+// interiors and the evening lighting. Near-identical frames are left out.
 import cottages from "../../galleryImages/_P9A1366.jpg";
 import nandiCottage from "../../galleryImages/_P9A1367.jpg";
 import hillView from "../../galleryImages/_P9A1350.jpg";
@@ -11,6 +11,10 @@ import gardenPath from "../../galleryImages/_P9A1351.jpg";
 import cottageDusk from "../../galleryImages/_P9A1364.jpg";
 import buddhaGarden from "../../galleryImages/_P9A1183.jpg";
 import eveningLights from "../../galleryImages/_P9A1184.jpg";
+import villa01 from "../../roomImages/villa-01.jpg";
+import villa03 from "../../roomImages/villa-03.jpg";
+import duplexLiving from "../../roomImages/duplex-living.jpg";
+import villaLiving from "../../roomImages/villa-living.jpg";
 
 
 export default function Gallery() {
@@ -19,7 +23,11 @@ export default function Gallery() {
   // Titles describe what is actually in each photograph.
   const images = [
     { title: "Nandi Cottages", img: cottages },
+    { title: "Villa 01", img: villa01 },
+    { title: "Villa 03", img: villa03 },
     { title: "Refresh @ Nandi Cottage", img: nandiCottage },
+    { title: "Duplex Villa Living Area", img: duplexLiving },
+    { title: "Villa Living Room", img: villaLiving },
     { title: "Nandi Hills View", img: hillView },
     { title: "Garden Pathway", img: gardenPath },
     { title: "Cottage at Dusk", img: cottageDusk },
