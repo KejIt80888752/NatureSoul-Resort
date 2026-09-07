@@ -1,4 +1,5 @@
 import Footer from "../components/Footer";
+import resortPhoto from "../../galleryImages/_P9A1366.jpg";
 import { useNavigate } from "react-router-dom";
 import "../style/about.css";
 
@@ -21,8 +22,8 @@ export default function About() {
         <div className="about-container">
           <div className="about-img">
             <img
-              src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
-              alt="Resort"
+              src={resortPhoto}
+              alt="Nature Soul Resort cottages"
             />
           </div>
 

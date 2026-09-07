@@ -1,11 +1,13 @@
 // src/assets/data/roomsData.js
 // Rooms shown when the booking backend is not configured (see src/assets/services/api.js).
 
-import villa1 from "../../galleryImages/_P9A1364.jpg";
-import villa2 from "../../galleryImages/_P9A1366.jpg";
-import villa3 from "../../galleryImages/_P9A1367.jpg";
-import villa2bhk from "../../galleryImages/_P9A1350.jpg";
-import villaDuplex from "../../galleryImages/_P9A1349.jpg";
+// One distinct photo per unit — no unit shares an image with another.
+// Villas and cottages use the resort's own photographs.
+import cottage1 from "../../galleryImages/_P9A1364.jpg";   // single cottage at dusk
+import cottage2 from "../../galleryImages/_P9A1367.jpg";   // Refresh @ Nandi Cottage
+import cottage3 from "../../galleryImages/_P9A1351.jpg";   // villa along the garden path
+import villa2bhk from "../../galleryImages/_P9A1350.jpg";  // villa with the Nandi hill behind
+import villaDuplex from "../../galleryImages/_P9A1349.jpg";// the two storey duplex
 
 const roomsData = [
   {
@@ -18,7 +20,7 @@ const roomsData = [
     ac: "Non-AC",
     amenities: ["WiFi", "TV"],
     price: 2500,
-    img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+    img: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200",
     desc: "Cozy basic room with essential facilities."
   },
   {
@@ -31,7 +33,7 @@ const roomsData = [
     ac: "Non-AC",
     amenities: ["WiFi", "TV"],
     price: 2500,
-    img: "https://images.unsplash.com/photo-1540518614846-7eded433c457",
+    img: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1200",
     desc: "Comfortable room for a budget-friendly stay."
   },
   {
@@ -44,7 +46,7 @@ const roomsData = [
     ac: "Non-AC",
     amenities: ["WiFi", "TV"],
     price: 2500,
-    img: "https://images.unsplash.com/photo-1540518614846-7eded433c457",
+    img: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=1200",
     desc: "Spacious double room for small families or friends."
   },
   {
@@ -57,7 +59,7 @@ const roomsData = [
     ac: "Non-AC",
     amenities: ["WiFi", "TV"],
     price: 2500,
-    img: "https://images.unsplash.com/photo-1540518614846-7eded433c457",
+    img: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200",
     desc: "Comfortable double room with essential amenities."
   },
   {
@@ -70,7 +72,7 @@ const roomsData = [
     ac: "AC",
     amenities: ["WiFi", "TV", "Mini Fridge"],
     price: 6500,
-    img: villa1,
+    img: cottage1,
     desc: "1BHK villa surrounded by greenery for a peaceful stay."
   },
   {
@@ -83,7 +85,7 @@ const roomsData = [
     ac: "AC",
     amenities: ["WiFi", "TV", "Mini Fridge"],
     price: 6500,
-    img: villa2,
+    img: cottage2,
     desc: "Comfortable villa with modern facilities."
   },
   {
@@ -96,7 +98,7 @@ const roomsData = [
     ac: "AC",
     amenities: ["WiFi", "TV", "Mini Fridge"],
     price: 6500,
-    img: villa3,
+    img: cottage3,
     desc: "Cozy villa perfect for a relaxing getaway."
   },
   {

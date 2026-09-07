@@ -2,57 +2,29 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import "../style/gallery.css";
 
-import Pool1 from "../../galleryImages/_P9A1183.jpg";
-import Pool2 from "../../galleryImages/_P9A1184.jpg";
-import Pool3 from "../../galleryImages/_P9A1185.jpg";
-import Pool4 from "../../galleryImages/_P9A1349.jpg";
-import Pool5 from "../../galleryImages/_P9A1350.jpg";
-import Pool6 from "../../galleryImages/_P9A1351.jpg";
-import Pool7 from "../../galleryImages/_P9A1352.jpg";
-import Pool8 from "../../galleryImages/_P9A1364.jpg";
-import Pool9 from "../../galleryImages/_P9A1366.jpg";
+// Seven clearly different photographs. Near-identical frames (_P9A1352, _P9A1185, _P9A1349) are left
+// out on purpose — the same shot twice looked like a mistake in the gallery.
+import cottages from "../../galleryImages/_P9A1366.jpg";
+import nandiCottage from "../../galleryImages/_P9A1367.jpg";
+import hillView from "../../galleryImages/_P9A1350.jpg";
+import gardenPath from "../../galleryImages/_P9A1351.jpg";
+import cottageDusk from "../../galleryImages/_P9A1364.jpg";
+import buddhaGarden from "../../galleryImages/_P9A1183.jpg";
+import eveningLights from "../../galleryImages/_P9A1184.jpg";
 
 
 export default function Gallery() {
   const navigate = useNavigate();
 
+  // Titles describe what is actually in each photograph.
   const images = [
-    {
-      title: "Luxury Pool View",
-      img: Pool1,
-    },
-    {
-      title: "Premium Bedroom",
-      img: Pool2,
-    },
-    {
-      title: "Nature Walk",
-      img: Pool3,
-    },
-    {
-      title: "Fine Dining",
-      img: Pool4,
-    },
-    {
-      title: "Camp Fire Night",
-      img: Pool5,
-    },
-    {
-      title: "Resort Exterior",
-      img: Pool6,
-    },
-    {
-      title: "Resort Exterior",
-      img: Pool7,
-    },
-    {
-      title: "Resort Exterior",
-      img: Pool8,
-    },
-    {
-      title: "Resort Exterior",
-      img: Pool9,
-    },
+    { title: "Nandi Cottages", img: cottages },
+    { title: "Refresh @ Nandi Cottage", img: nandiCottage },
+    { title: "Nandi Hills View", img: hillView },
+    { title: "Garden Pathway", img: gardenPath },
+    { title: "Cottage at Dusk", img: cottageDusk },
+    { title: "Buddha Garden", img: buddhaGarden },
+    { title: "Evening Lighting", img: eveningLights },
   ];
 
   return (

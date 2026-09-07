@@ -1,8 +1,10 @@
+import gardenPath from "../../galleryImages/_P9A1352.jpg";
+
 export default function Amenities() {
   const amenities = [
     {
       title: "Nature Walk",
-      img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+      img: gardenPath,
     } ,
     
     {
