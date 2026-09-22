@@ -7,7 +7,7 @@ import { resortInfo, askTheTeam } from "../data/resortInfo";
 import { mealTimings, menuHighlights } from "../data/foodMenu";
 import { formatPrice } from "../services/api";
 
-const { contact, address, mapHref, amenities, rooms } = resortInfo;
+const { contact, address, mapHref, amenities, rooms, policies } = resortInfo;
 
 const normalize = (text) =>
   text
@@ -186,13 +186,13 @@ const intents = [
     id: "capacity",
     keywords: [
       "guest", "guests", "people", "person", "family", "couple", "group",
-      "how many", "capacity", "occupancy", "children", "kids", "extra bed",
+      "how many", "capacity", "occupancy", "children", "kids",
       "நபர்", "குடும்பம்",
     ],
     reply: () => {
       const big = largest();
       return {
-        text: `Room capacity:\n\n${roomLines()}\n\nThe largest option is the ${big.name} — up to ${big.maxOccupancy} guests. On the Rooms page you can filter by number of guests.`,
+        text: `Room capacity:\n\n${roomLines()}\n\nThe largest option is the ${big.name} — up to ${big.maxOccupancy} guests. Extra guests are ${formatPrice(policies.extraGuestCharge)} per person. On the Rooms page you can filter by number of guests.`,
         actions: [GO_ROOMS],
       };
     },
@@ -244,22 +244,41 @@ const intents = [
       "what time", "நேரம்",
     ],
     reply: () => ({
-      text: `You choose your check-in and check-out date and time in the booking form. Standard resort timings for your stay date are confirmed by our team — please ask them directly.`,
+      text: `Check-in: ${policies.checkIn}\nCheck-out: ${policies.checkOut}\n\nEarly check-in or late check-out depends on availability — message us and we'll try to arrange it.`,
+      actions: [GO_ROOMS, WHATSAPP],
+    }),
+  },
+
+  {
+    id: "cancellation",
+    keywords: ["cancel", "cancellation", "refund", "refundable", "money back", "no show"],
+    reply: () => ({
+      text: `${policies.cancellation} Once a booking is confirmed, the amount paid is not refunded on cancellation or no-show.\n\nIf your plans change, message us — date changes are possible subject to availability.`,
       actions: [WHATSAPP, CALL],
+    }),
+  },
+
+  {
+    id: "extra-guest",
+    keywords: [
+      "extra guest", "extra person", "extra bed", "additional guest", "extra adult",
+      "child charge", "kids charge", "extra charge", "one more person",
+    ],
+    reply: () => ({
+      text: `Extra guests are charged ${formatPrice(policies.extraGuestCharge)} per person (adult or child), on top of the room tariff. Please mention the number of extra guests while booking so we can prepare the room.`,
+      actions: [GO_ROOMS, WHATSAPP],
     }),
   },
 
   {
     id: "policy",
     keywords: [
-      "cancel", "cancellation", "refund", "advance", "payment", "pay", "upi",
-      "card", "pet", "pets", "dog", "party", "event", "wedding", "corporate",
-      "discount", "offer",
+      "advance", "payment", "pay", "upi", "card", "pet", "pets", "dog", "party",
+      "event", "wedding", "corporate", "discount", "offer",
     ],
     reply: () => ({
-      text: `That one is best answered by our team directly — policies like ${askTheTeam
-        .slice(1, 4)
-        .join(", ")} and offers are confirmed case by case.\n\nMessage us on WhatsApp and you'll get a quick reply.`,
+      text: `That one is best answered by our team directly — ${askTheTeam
+        .join(", ")} are confirmed case by case.\n\nMessage us on WhatsApp and you'll get a quick reply.`,
       actions: [WHATSAPP, CALL, GO_CONTACT],
     }),
   },

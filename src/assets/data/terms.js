@@ -8,8 +8,8 @@
 // Bump TERMS_VERSION whenever the text changes: every visitor is then asked to
 // accept the new version once.
 
-export const TERMS_VERSION = "1.1";
-export const TERMS_UPDATED = "August 2026";
+export const TERMS_VERSION = "1.2";
+export const TERMS_UPDATED = "September 2026";
 
 export const termsSections = [
   {
@@ -28,10 +28,11 @@ export const termsSections = [
     ],
   },
   {
-    title: "3. Check-in & Check-out",
+    title: "3. Check-in, Check-out & Extra Guests",
     points: [
-      "Check-in and check-out timings for your stay are confirmed by the resort team at the time of booking.",
+      "Check-in time is 12:00 PM and check-out time is 11:00 AM.",
       "Early check-in and late check-out are subject to availability and may carry an additional charge.",
+      "Extra guests (adult or child) beyond the room's standard occupancy are charged ₹999 per person.",
     ],
   },
   {

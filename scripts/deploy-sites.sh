@@ -44,11 +44,19 @@ publish() {
   cd "$WORK/$label"
 
   git init -q -b gh-pages
+  git config http.postBuffer 524288000   # image-heavy builds need a bigger buffer
   git add -A
   git -c user.email="sr5049011@gmail.com" -c user.name="KejIt80888752" \
       commit -q -m "Deploy $label"
   git remote add origin "https://github.com/$repo.git"
-  git -c credential.helper='!gh auth git-credential' push -f -q origin gh-pages
+  # GitHub occasionally times out on a large first push — retry rather than fail
+  for attempt in 1 2 3; do
+    if git -c credential.helper='!gh auth git-credential' push -f -q origin gh-pages; then
+      break
+    fi
+    echo "  push attempt $attempt failed, retrying..."
+    sleep 5
+  done
 
   cd "$ROOT"
 }

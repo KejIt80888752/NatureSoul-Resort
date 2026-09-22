@@ -44,6 +44,7 @@ Check-out: {{5}}
 Guests: {{6}}
 Tariff: Rs. {{7}} per night
 
+Check-in time is 12:00 PM and check-out is 11:00 AM.
 Please carry the same ID proof used while booking.
 
 Need anything before your stay? Call us on +91 99860 23980 or reply to this message.

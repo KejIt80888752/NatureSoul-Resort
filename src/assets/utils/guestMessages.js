@@ -95,6 +95,9 @@ export const buildEnquiryMessage = (form, room) =>
   `Email: ${form.email}\n\n` +
   `Check-in: ${form.checkIn}${form.checkInTime ? `, ${form.checkInTime}` : ""}\n` +
   `Check-out: ${form.checkOut}${form.checkOutTime ? `, ${form.checkOutTime}` : ""}\n` +
+  (Number(form.extraGuests) || Number(form.children)
+    ? `Extra adults: ${Number(form.extraGuests) || 0}, Children: ${Number(form.children) || 0}\n`
+    : "") +
   `ID proof: ${(form.identityType || "").toUpperCase()} ${form.identityNumber}\n\n` +
   `Please confirm availability for these dates.`;
 

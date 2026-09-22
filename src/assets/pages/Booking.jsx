@@ -25,10 +25,12 @@ export default function Booking() {
     email: "",
     checkIn: "",
     checkOut: "",
-    checkInTime: "",
-    checkOutTime: "",
+    checkInTime: resortInfo.policies.checkInTime,
+    checkOutTime: resortInfo.policies.checkOutTime,
     identityType: "",
     identityNumber: "",
+    extraGuests: "0",
+    children: "0",
   });
 
   if (!selectedRoom) {
@@ -336,6 +338,42 @@ export default function Booking() {
                 onChange={handleChange}
               />
             </div>
+
+            {/* Extra guests */}
+            <div className="form-group">
+              <label htmlFor="extraGuests">
+                Extra adults <span className="optional">(₹{resortInfo.policies.extraGuestCharge} per person)</span>
+              </label>
+              <input
+                type="number"
+                id="extraGuests"
+                name="extraGuests"
+                min="0"
+                max="10"
+                value={form.extraGuests}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="children">
+                Children <span className="optional">(₹{resortInfo.policies.extraGuestCharge} per child)</span>
+              </label>
+              <input
+                type="number"
+                id="children"
+                name="children"
+                min="0"
+                max="10"
+                value={form.children}
+                onChange={handleChange}
+              />
+            </div>
+
+            <p className="booking-policy-note">
+              Check-in {resortInfo.policies.checkIn} · Check-out {resortInfo.policies.checkOut} ·{" "}
+              {resortInfo.policies.cancellation}
+            </p>
 
             {/* Image */}
             <div className="form-group">

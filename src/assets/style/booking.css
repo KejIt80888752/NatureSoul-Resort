@@ -266,3 +266,13 @@
   color: #ff6c22;
   font-weight: 600;
 }
+
+.booking-policy-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px 14px;
+  background: #fff7ed;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #9a3412;
+}

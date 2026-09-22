@@ -29,13 +29,21 @@ export const resortInfo = {
   ],
 
   rooms: roomsData,
+
+  // Confirmed by the resort (September 2026)
+  policies: {
+    checkIn: "12:00 PM",
+    checkOut: "11:00 AM",
+    checkInTime: "12:00", // 24h, used to pre-fill the booking form
+    checkOutTime: "11:00",
+    extraGuestCharge: 999, // per extra adult or child
+    cancellation: "All bookings are non-refundable.",
+  },
 };
 
 // Facts the website does not state — the bot must never invent an answer for
 // these, it hands the guest over to the team instead.
 export const askTheTeam = [
-  "check-in / check-out timings",
-  "cancellation & refund policy",
   "advance payment",
   "pets",
   "meal plans and menu pricing",
